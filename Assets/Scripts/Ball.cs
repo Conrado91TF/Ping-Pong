@@ -48,4 +48,21 @@ public class Ball : MonoBehaviour
        }
        
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        transform.position = BallOrigin;
+        setBallDirection();
+
+        if (other.gameObject.CompareTag("Goal 1"))
+        {
+            ScoreManager.instance.Player2Scored();
+            
+        }
+        if (other.gameObject.CompareTag("Goal 2"))
+        {
+            ScoreManager.instance.Player1Scored();
+           
+        }
+    }
 }
