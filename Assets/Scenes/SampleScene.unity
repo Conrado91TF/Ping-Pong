@@ -397,6 +397,9 @@ MonoBehaviour:
   player1goals: 0
   player2goals: 0
   GoalText: {fileID: 1972966710}
+  scoreSound: {fileID: 0}
+  animationDuration: 0.5
+  easeType: 29
 --- !u!4 &440918462
 Transform:
   m_ObjectHideFlags: 0
@@ -1026,6 +1029,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 2.5
   direction: {x: 0, y: 0, z: 0}
+  maxSpeed: 10
+  speedIncrement: 0.5
+  effectsGoal: {fileID: 3384366999043453948, guid: 7c19ad7a926fc084ea69d9ba4fedeeab, type: 3}
 --- !u!54 &1803336209
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1157,7 +1163,7 @@ Transform:
   m_GameObject: {fileID: 1911128145}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0.7071068, z: 0, w: 0.7071068}
-  m_LocalPosition: {x: -14.14, y: 1.07, z: -0.05}
+  m_LocalPosition: {x: -15.31, y: 1.07, z: -0.05}
   m_LocalScale: {x: 3.9382887, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1572,6 +1578,9 @@ MonoBehaviour:
   player1goals: 0
   player2goals: 2
   GoalText: {fileID: 0}
+  scoreSound: {fileID: 0}
+  animationDuration: 0.5
+  easeType: 4
 --- !u!1 &2035773870
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,6 +1705,9 @@ MonoBehaviour:
   player1goals: 1
   player2goals: 0
   GoalText: {fileID: 1972966710}
+  scoreSound: {fileID: 0}
+  animationDuration: 0.5
+  easeType: 4
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

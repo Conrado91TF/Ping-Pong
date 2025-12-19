@@ -9,8 +9,15 @@ public class ScoreManager : MonoBehaviour
     int player2goals = 0;
     [SerializeField]
     TextMeshProUGUI GoalText;
+    
+    [SerializeField]
+    AudioClip scoreSound;
+    
 
     public static ScoreManager instance;
+    [SerializeField]
+    float animationDuration = 0.5f;
+    public LeanTweenType easeType = LeanTweenType.easeOutBounce;
 
     private void Awake()
     {
@@ -23,9 +30,11 @@ public class ScoreManager : MonoBehaviour
             Destroy(this);
         }
     }
+    public void PlayScoreSound()
+    {
+        AudioSource.PlayClipAtPoint(scoreSound, Camera.main.transform.position);
+    }
 
-
-    // Start is called once before the first execution of Update after the MonoBehaviour is created
     private void Start()
     {
         UpdateGoalText();
@@ -46,5 +55,12 @@ public class ScoreManager : MonoBehaviour
     void UpdateGoalText()
     {
         GoalText.text = player1goals.ToString() + " - " + player2goals.ToString();
+
+        LeanTween.scale(GoalText.rectTransform, Vector3.one * 1.5f, animationDuration).setEase(easeType).setOnComplete(() =>
+        {
+            LeanTween.scale(GoalText.rectTransform, Vector3.one, animationDuration).setEase(easeType);
+        });
     }
+
 }
+

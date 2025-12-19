@@ -8,11 +8,22 @@ public class Ball : MonoBehaviour
     Vector3 direction;
 
     Vector3 BallOrigin;
+    [SerializeField]
+    float maxSpeed = 10;
+    [SerializeField]
+    float speedIncrement = 0.5f;
+    [SerializeField]
+    public GameObject effectsGoal;
+    
+
+
+    float originalSpeed;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         BallOrigin = transform.position;
+        originalSpeed = speed;
         setBallDirection();
     }
     void setBallDirection()
@@ -38,7 +49,7 @@ public class Ball : MonoBehaviour
     }
     private void OnCollisionEnter(Collision other)
     {
-       if (other.gameObject.CompareTag("Player"))
+       if (other.gameObject.CompareTag("Player1") || other.gameObject.CompareTag("Player2"))
        {
             direction.x = -direction.x;
        }
@@ -47,11 +58,16 @@ public class Ball : MonoBehaviour
             direction.z = -direction.z;
        }
        
+       if (speed < maxSpeed)
+       {
+           speed += speedIncrement;
+       }
     }
 
     private void OnTriggerEnter(Collider other)
     {
         transform.position = BallOrigin;
+        originalSpeed = speed;
         setBallDirection();
 
         if (other.gameObject.CompareTag("Goal 1"))
@@ -59,10 +75,22 @@ public class Ball : MonoBehaviour
             ScoreManager.instance.Player2Scored();
             
         }
+        
+        if (effectsGoal != null)
+        {
+            Instantiate(effectsGoal, transform.position, Quaternion.identity);
+        }
+
+
         if (other.gameObject.CompareTag("Goal 2"))
         {
             ScoreManager.instance.Player1Scored();
-           
+
+        }
+        
+        if (effectsGoal != null)
+        {
+            Instantiate(effectsGoal, transform.position, Quaternion.identity);
         }
     }
 }
