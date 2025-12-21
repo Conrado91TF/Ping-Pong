@@ -1,5 +1,6 @@
 using UnityEngine;
 using TMPro;
+using Unity.VisualScripting;
 
 public class ScoreManager : MonoBehaviour
 { 
@@ -10,11 +11,8 @@ public class ScoreManager : MonoBehaviour
     [SerializeField]
     TextMeshProUGUI GoalText;
     
-    [SerializeField]
-    AudioClip scoreSound;
-    
-
     public static ScoreManager instance;
+    
     [SerializeField]
     float animationDuration = 0.5f;
     public LeanTweenType easeType = LeanTweenType.easeOutBounce;
@@ -30,10 +28,7 @@ public class ScoreManager : MonoBehaviour
             Destroy(this);
         }
     }
-    public void PlayScoreSound()
-    {
-        AudioSource.PlayClipAtPoint(scoreSound, Camera.main.transform.position);
-    }
+    
 
     private void Start()
     {
@@ -44,12 +39,16 @@ public class ScoreManager : MonoBehaviour
     {
         player1goals++;
         UpdateGoalText();
+       
     }
+    
     
     public void Player2Scored()
     {
         player2goals++;
         UpdateGoalText();
+
+        
     }
 
     void UpdateGoalText()

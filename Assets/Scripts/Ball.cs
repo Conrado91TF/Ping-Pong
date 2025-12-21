@@ -73,10 +73,9 @@ public class Ball : MonoBehaviour
         if (other.gameObject.CompareTag("Goal 1"))
         {
             ScoreManager.instance.Player2Scored();
-            
+
         }
-        
-        if (effectsGoal != null)
+        else 
         {
             Instantiate(effectsGoal, transform.position, Quaternion.identity);
         }
@@ -87,8 +86,7 @@ public class Ball : MonoBehaviour
             ScoreManager.instance.Player1Scored();
 
         }
-        
-        if (effectsGoal != null)
+        else 
         {
             Instantiate(effectsGoal, transform.position, Quaternion.identity);
         }
