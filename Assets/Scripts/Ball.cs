@@ -1,3 +1,4 @@
+using JetBrains.Annotations;
 using UnityEngine;
 
 public class Ball : MonoBehaviour
@@ -14,7 +15,11 @@ public class Ball : MonoBehaviour
     float speedIncrement = 0.5f;
     [SerializeField]
     public GameObject effectsGoal;
-    
+    [SerializeField]
+    public Rigidbody rb;
+    public TrailRenderer tr;
+    public float maxTrailTime = 15f;
+
 
 
     float originalSpeed;
@@ -25,6 +30,19 @@ public class Ball : MonoBehaviour
         BallOrigin = transform.position;
         originalSpeed = speed;
         setBallDirection();
+        TrailRenderer3();
+    }
+    void TrailRenderer3()
+    {
+        if (rb == null)
+        {
+            rb = GetComponent<Rigidbody>();
+        }
+        if (tr == null)
+        {
+            tr = GetComponent<TrailRenderer>();
+        }
+
     }
     void setBallDirection()
     {
@@ -46,6 +64,7 @@ public class Ball : MonoBehaviour
     void Update()
     {
         transform.position += direction.normalized * Time.deltaTime * speed;
+        MaxTrailTime();
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -68,6 +87,7 @@ public class Ball : MonoBehaviour
     {
         transform.position = BallOrigin;
         originalSpeed = speed;
+        tr.Clear();
         setBallDirection();
 
         if (other.gameObject.CompareTag("Goal 1"))
@@ -90,5 +110,18 @@ public class Ball : MonoBehaviour
         {
             Instantiate(effectsGoal, transform.position, Quaternion.identity);
         }
+        
+        
+    }
+    public void MaxTrailTime()
+    {
+       if (speed >= maxTrailTime)
+       {
+           tr.emitting = true;
+       }
+       else
+       {
+           tr.emitting = false;
+       }
     }
 }

@@ -10,6 +10,8 @@ TagManager:
   - Wall
   - Goal 1
   - Goal 2
+  - Panel Rojo
+  - Panel Verde
   layers:
   - Default
   - TransparentFX

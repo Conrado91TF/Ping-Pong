@@ -58,6 +58,7 @@ public class AudioSouce : MonoBehaviour
         if (collision.gameObject.CompareTag("Ball"))
         {
             WallAudioSource.PlayOneShot(WallSouce);
+            
         }
 
     }
